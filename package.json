@@ -1,18 +1,31 @@
 {
   "name": "patient_rest_api",
+  "author": "Wesley Jinks",
+  "license": "ISC",
   "version": "1.0.0",
   "description": "REST API Backend for Patient to CRUD notes, and treatment results",
   "repository": "https://github.com/shoedog/PatientRESTAPI",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./db/database.js"
+    "test": "mocha --compilers js:babel-register",
+    "start": "nodemon index.js --exec babel-node",
+    "build": "bael lib -d dist",
+    "server": "node dist/index.js",
+    "db": "node ./db/database.js"
   },
-  "author": "Wesley Jinks",
-  "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.15.2",
+    "errorhandler": "^1.4.3",
     "express": "^4.14.0",
     "mongoose": "^4.6.5",
+    "morgan": "^1.7.0",
+    "passport": "^0.3.2",
     "uuid": "^2.0.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.18.0",
+    "babel-preset-latest": "^6.16.0",
+    "babel-register": "^6.18.0",
+    "nodemon": "^1.11.0"
   }
 }

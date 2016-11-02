@@ -32,6 +32,9 @@ node_modules
 .idea
 jspm_packages
 
+#Output directory
+dist
+
 # Optional npm cache directory
 .npm
 
