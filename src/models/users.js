@@ -17,14 +17,10 @@ var userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  notes: [{
-    type: mongoose.Schema.ObjectId,
-    ref: 'Note'
-  }],
-  results: [{
-    type: mongoose.Schema.ObjectId,
-    Ref: 'Result'
-  }]
+  password: {
+    type: String,
+    required: true
+  }
 });
-userSchema.plugin(generateUID());
+//userSchema.plugin(generateUID.generateUUID(userSchema));
 module.exports = mongoose.model('User', userSchema);

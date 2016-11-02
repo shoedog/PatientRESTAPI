@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var config = require('./config');
 module.exports = function (app) {
   // Open Connection to mongo instance
   mongoose.connect('mongodb://localhost/patientRestTest',

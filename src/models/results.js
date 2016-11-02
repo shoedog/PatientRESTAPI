@@ -9,9 +9,17 @@ var resultSchema = new mongoose.Schema({
       unique: true
     }
   },
-  name: {
+  title: {
     type: String,
     required: true
+  },
+  body: {
+    type: String,
+    required: true
+  },
+  added_by: {
+    type: mongoose.Schema.ObjectId,
+    ref: 'User'
   },
   added_at: {
     type: Date,

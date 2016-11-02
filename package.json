@@ -8,10 +8,11 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --compilers js:babel-register",
-    "start": "nodemon index.js --exec babel-node",
-    "build": "bael lib -d dist",
+    "start": "nodemon ./src/index.js --exec babel-node",
+    "build": "babel src -d dist && npm run assets",
     "server": "node dist/index.js",
-    "db": "node ./db/database.js"
+    "bld:start": "npm run build && npm run server",
+    "assets": "cp src/lib/config.json dist/lib/"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
@@ -20,12 +21,15 @@
     "mongoose": "^4.6.5",
     "morgan": "^1.7.0",
     "passport": "^0.3.2",
+    "restify": "^4.2.0",
     "uuid": "^2.0.3"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-preset-latest": "^6.16.0",
     "babel-register": "^6.18.0",
-    "nodemon": "^1.11.0"
+    "chai": "^3.5.0",
+    "nodemon": "^1.11.0",
+    "supertest": "^2.0.1"
   }
 }

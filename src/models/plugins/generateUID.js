@@ -1,7 +1,6 @@
 var uuid = require('uuid');
 
-module.exports = () => {
-  return generateUID = (schema) => {
+exports.generateUUID = (schema) => {
     schema.pre('validate', (next, done) => {
       var instance = this;
       var model = instance.model(instance.constructor.modelName);
@@ -13,5 +12,4 @@ module.exports = () => {
         done();
       }
     })
-  }
 };

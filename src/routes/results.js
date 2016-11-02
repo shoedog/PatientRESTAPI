@@ -3,27 +3,33 @@ var Note = require('../models/notes');
 var Result = require('../models/results');
 
 
-exports.createUser = (req, res, next) => {
+exports.createResult = (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  var user = new User();
-  user.user = req.params.user;
-  user.save( () => {
+  var Result = new Result();
+  result.result = req.params.result;
+  result.save( () => {
     res.send(req.body);
   });
 };
 
-exports.updateUser = (req, res, next) => {
+exports.updateResult = (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
 };
 
-exports.getUser = (req, res, next) => {
+exports.getResults = (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
+
+  // .find() without any arguments, will return all results
+  // the `-1` in .sort() means descending order
+  Result.find().sort('date', -1).execFind(function (arr,data) {
+    res.send(data);
+  });
 };
 
-exports.removeUser = (req, res, next) => {
+exports.removeResult = (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
 };
