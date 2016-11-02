@@ -1,9 +1,9 @@
-var mongoose = require('mongoose');
+var mongoose = require('../lib/db').mongoose;
 var generateId = require('./plugins/generateId');
 
 var resultSchema = new mongoose.Schema({
   id: {
-    type: String,
+    type: mongoose.Schema.ObjectId,
     required: true,
     index: {
       unique: true
@@ -18,7 +18,7 @@ var resultSchema = new mongoose.Schema({
     required: true
   },
   added_by: {
-    type: mongoose.Schema.ObjectId,
+    type: String,
     ref: 'User'
   },
   added_at: {

@@ -1,9 +1,9 @@
-var mongoose = require('mongoose');
-var generateUID = require('./plugins/generateUID');
+var mongoose = require('../lib/db').mongoose;
+var generateUUID = require('./plugins/generateUUID');
 
 var userSchema = new mongoose.Schema({
   id: {
-    type: String,
+    type: mongoose.Schema.ObjectId,
     required: true,
     index: {
       unique: true
@@ -22,5 +22,6 @@ var userSchema = new mongoose.Schema({
     required: true
   }
 });
-//userSchema.plugin(generateUID.generateUUID(userSchema));
-module.exports = mongoose.model('User', userSchema);
+var collectionName = 'User';
+userSchema.plugin(generateUUID());
+module.exports = mongoose.model(collectionName, userSchema);

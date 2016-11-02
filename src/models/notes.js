@@ -1,9 +1,9 @@
-var mongoose = require('mongoose');
+var mongoose = require('../lib/db').mongoose;
 var generateId = require('./plugins/generateId');
 
 var noteSchema = new mongoose.Schema({
   id: {
-    type: String,
+    type: mongoose.Schema.ObjectId,
     required: true,
     index: {
       unique: true
@@ -22,6 +22,10 @@ var noteSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
     required: true
+  },
+  author: {
+    type: String,
+    ref: 'User'
   },
   users: [{
     type: mongoose.Schema.ObjectId,

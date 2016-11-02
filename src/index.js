@@ -9,9 +9,6 @@ var restify = require('restify');
 var fs = require('fs');
 
 var config = require('./lib/config');
-var userRoutes = require('./routes/users');
-var noteRoutes = require('./routes/notes');
-var resultRoutes = require('./routes/results');
 var defaultRoute = require('./routes/routes');
 
 var PORT = 3000;
@@ -49,15 +46,13 @@ server.use(restify.bodyParser({
 }));
 
 // Routes
-const send = (req, res, next) => {
-  res.send('hello' + req.params.name);
-  return next();
-};
 
+/*
 server.post('/user', userRoutes.createUser);
 server.put('/user/:id', userRoutes.updateUser);
 server.get('/user/:id', userRoutes.getUser);
 server.del('/user/:id', userRoutes.removeUser);
+
 
 server.post('/result', resultRoutes.createResult);
 server.put('/result/:id', resultRoutes.updateResult);
@@ -68,9 +63,13 @@ server.post('/note', noteRoutes.createNote);
 server.put('/note/:id', noteRoutes.updateNote);
 server.get('/note', noteRoutes.getNotes);
 server.del('/note/:id', noteRoutes.removeNote);
-
+*/
 server.get('/', defaultRoute);
 
 server.listen(config.port, () => {
   console.log(`${server.name} listening at ${server.url}`)
 });
+
+var userRoutes = require('./routes/users')(server);
+var noteRoutes = require('./routes/notes')(server);
+var resultRoutes = require('./routes/results')(server);
