@@ -24,7 +24,7 @@ exports.ensureAuth = (req, res, next) => {
 exports.createToken = (user) => {
   let tokenOpts = {
     algorithm: 'HS256',
-    expiresIn: '2h'
+    expiresIn: '24h'
   };
 
   return jwt.sign(user, SECRET, tokenOpts);

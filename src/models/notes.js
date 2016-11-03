@@ -1,18 +1,48 @@
 var mongoose = require('../lib/config/db').mongoose;
-var generateId = require('./plugins/generateId');
+var Schema = mongoose.Schema;
 
 var noteSchema = new mongoose.Schema({
-  id: {
-    type: mongoose.Schema.ObjectId,
-    required: true,
-    index: {
-      unique: true
-    }
-  },
   name: {
     type: String,
     required: true
   },
+  text_content: [{
+    type: String,
+    added_at: {
+      type: Date,
+      default: Date.now,
+      required: true
+    },
+    updated_at: {
+      type: Date,
+      default: Date.now,
+      required: true
+    },
+    _author: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    }
+  }],
+  images: [{
+    data: Buffer,
+    contentType: String,
+    added_at: {
+      type: Date,
+      default: Date.now,
+      required: true
+    },
+    updated_at: {
+      type: Date,
+      default: Date.now,
+      required: true
+    },
+    _author: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true,
+    }
+  }],
   added_at: {
     type: Date,
     default: Date.now,
@@ -23,18 +53,22 @@ var noteSchema = new mongoose.Schema({
     default: Date.now,
     required: true
   },
-  author: {
-    type: String,
-    ref: 'User'
+  _author: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
   },
-  users: [{
-    type: mongoose.Schema.ObjectId,
+  _users_r: [{
+    type: Schema.Types.ObjectId,
     ref: 'User'
   }],
-  results: [{
-    type: mongoose.Schema.ObjectId,
+  _users_w: [{
+    type: Schema.Types.ObjectId,
+    ref: 'User'
+  }],
+  _results: [{
+    type: Schema.Types.ObjectId,
     Ref: 'Result'
   }]
 });
-noteSchema.plugin(generateId());
 module.exports = mongoose.model('Note', noteSchema);

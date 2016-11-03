@@ -17,10 +17,47 @@ var resultSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  added_by: {
+  _author: {
     type: String,
     ref: 'User'
   },
+  reminders: [{
+    type: Date,
+    day_freq: {
+      type: String,
+      enum: ['M', 'T', 'W', 'Th', 'F', 'Sa', 'Su']
+    },
+    weeks: {
+      type: Number,
+      min: [1],
+      max: [52]
+    },
+    months: {
+      type: Number,
+      min: [1],
+      max: [12],
+    },
+    days: {
+      type: Number,
+      min: [1],
+      max: [31]
+    },
+    time_freq: {
+      hour: {
+        type: Number,
+        min: [0],
+        max: [23]
+      },
+      minute: {
+        type: Number,
+        min: [0],
+        max: [59]
+      }
+    },
+    details: {
+      type: String,
+    }
+  }],
   added_at: {
     type: Date,
     default: Date.now,
@@ -31,11 +68,15 @@ var resultSchema = new mongoose.Schema({
     default: Date.now,
     required: true
   },
-  users: [{
+  _users_r: [{
     type: mongoose.Schema.ObjectId,
     ref: 'User'
   }],
-  notes: [{
+  _users_w: [{
+    type: mongoose.Schema.ObjectId,
+    ref: 'User'
+  }],
+  _notes: [{
     type: mongoose.Schema.ObjectId,
     Ref: 'Note'
   }]

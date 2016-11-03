@@ -7,7 +7,6 @@ exports.errorHandler = (res, err) => {
 };
 
 exports.resHandler = (res, type, data, token) => {
-  console.log("res handler");
   if (token){
     return res.json({
       type: type,

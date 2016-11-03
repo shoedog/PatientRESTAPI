@@ -1,11 +1,10 @@
-var User = require('../models/users');
-var Note = require('../models/notes');
-var Result = require('../models/results');
 var result = require('../controllers/resultsController');
+var auth = require('../lib/utils/auth');
 
 module.exports = function(app) {
-  app.post('/result', result.createResult);
-  app.put('/result/:id', result.updateResult);
-  app.get('/result', result.getResults);
-  app.del('/result/:id', result.removeResult);
+  app.post('/result', auth.ensureAuth, result.createResult);
+  app.put('/result/:id', auth.ensureAuth, result.updateResult);
+  app.get('/result', auth.ensureAuth, result.getResults);
+  app.get('/result/:id', auth.ensureAuth, result.getResult);
+  app.del('/result/:id', auth.ensureAuth, result.removeResult);
 };

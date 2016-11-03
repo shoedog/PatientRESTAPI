@@ -50,7 +50,7 @@ exports.getUser = (req, res, next) => {
 exports.updateUser = (req, res, next) => {
   let id = req.decoded._doc._id;
 
-  dbProm.findIdAndUpdate(User, id, req.body)
+  dbProm.findIdAndUpdate(User, id, JSON.parse(req.body))
     .then( (user) => {
       if (user) {
         resHandlers.resHandler(res, true, user);
