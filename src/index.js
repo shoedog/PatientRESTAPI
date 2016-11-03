@@ -8,7 +8,7 @@ var errorHandler = require('errorhandler');
 var restify = require('restify');
 var fs = require('fs');
 
-var config = require('./lib/config');
+var config = require('./lib/config/config');
 var defaultRoute = require('./routes/routes');
 
 var PORT = 3000;
@@ -44,6 +44,12 @@ server.use(restify.bodyParser({
   mapParams: true,
   overrideParams: false,
 }));
+server.use( (req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST', 'PUT', 'DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, Authorization');
+  next();
+});
 
 // Routes
 
@@ -66,7 +72,7 @@ server.del('/note/:id', noteRoutes.removeNote);
 */
 server.get('/', defaultRoute);
 
-server.listen(config.port, () => {
+server.listen(8000, () => {
   console.log(`${server.name} listening at ${server.url}`)
 });
 

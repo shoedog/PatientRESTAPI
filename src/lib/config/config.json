@@ -1,4 +1,4 @@
 {
   "dbPath": "mongodb://localhost/patientRestTest",
-  "port": 8000
+  "port": 27017
 }

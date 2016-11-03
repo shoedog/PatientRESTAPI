@@ -1,4 +1,4 @@
-var mongoose = require('../lib/db').mongoose;
+var mongoose = require('../lib/config/db').mongoose;
 var generateId = require('./plugins/generateId');
 
 var resultSchema = new mongoose.Schema({

@@ -1,27 +1,29 @@
-var mongoose = require('../lib/db').mongoose;
+var mongoose = require('../lib/config/db').mongoose;
 var generateUUID = require('./plugins/generateUUID');
+var uuid = require('uuid');
 
 var userSchema = new mongoose.Schema({
-  id: {
-    type: mongoose.Schema.ObjectId,
-    required: true,
-    index: {
-      unique: true
-    }
-  },
+  /*id: {
+    type: String,
+    default: uuid.v4()
+  },*/
   name: {
     type: String,
-    required: true
+    required: true,
   },
   email: {
     type: String,
-    required: true
+    required: true,
+    unique: true,
   },
   password: {
     type: String,
-    required: true
+    required: true,
+  },
+  token: {
+    type: String,
   }
 });
 var collectionName = 'User';
-userSchema.plugin(generateUUID());
-module.exports = mongoose.model(collectionName, userSchema);
+var User = mongoose.model(collectionName, userSchema);
+module.exports = User;
