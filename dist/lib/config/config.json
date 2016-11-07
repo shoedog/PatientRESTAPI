@@ -1,5 +1,0 @@
-{
-  "dbPathLocal": "mongodb://localhost/patientRestTest",
-  "dbPath": "mongodb://rest:restful1@ds147167.mlab.com:47167/patient_rest",
-  "port": 47167
-}
