@@ -11,7 +11,7 @@ var fs = require('fs');
 var config = require('./lib/config/config');
 var defaultRoute = require('./routes/routes');
 
-var PORT = 3000;
+var PORT = process.env.PORT || 8000;
 //var jsonParser = bodyParser.json();
 //var urlParser = bodyParser.urlencoded({ extended: false });
 /*var router = express.Router();
@@ -72,7 +72,7 @@ server.del('/note/:id', noteRoutes.removeNote);
 */
 server.get('/', defaultRoute);
 
-server.listen(8000, () => {
+server.listen(PORT, () => {
   console.log(`${server.name} listening at ${server.url}`)
 });
 
