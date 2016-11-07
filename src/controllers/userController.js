@@ -40,7 +40,11 @@ exports.createUser = (req, res, next) => {
 exports.getUser = (req, res, next) => {
   dbProm.findOne(User, 'email', req.decoded._doc.email, 'email name password token')
     .then( (user) => {
-      resHandlers.resHandler(res, true, user);
+      if (user) {
+        resHandlers.resHandler(res, true, user);
+      } else {
+        resHandlers.resHandler(res, false, "User Not Found");
+      }
     })
     .catch( (err) => {
       resHandlers.errorHandler(res, err);

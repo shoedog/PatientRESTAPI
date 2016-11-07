@@ -2,13 +2,6 @@ var mongoose = require('../lib/config/db').mongoose;
 var generateId = require('./plugins/generateId');
 
 var resultSchema = new mongoose.Schema({
-  id: {
-    type: mongoose.Schema.ObjectId,
-    required: true,
-    index: {
-      unique: true
-    }
-  },
   title: {
     type: String,
     required: true
@@ -81,5 +74,5 @@ var resultSchema = new mongoose.Schema({
     Ref: 'Note'
   }]
 });
-resultSchema.plugin(generateId());
+//resultSchema.plugin(generateId());
 module.exports = mongoose.model('Result', resultSchema);

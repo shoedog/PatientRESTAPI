@@ -12,7 +12,7 @@
     "build": "babel src -d dist && npm run assets",
     "server": "node dist/index.js",
     "bld:start": "npm run build && npm run server",
-    "assets": "cp src/lib/config.json dist/lib/"
+    "assets": "cp src/lib/config/config.json dist/lib/"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
