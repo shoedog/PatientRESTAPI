@@ -1,1 +1,1 @@
-web: babel src -d dist && cp src/lib/config/config.json dist/lib/ && node dist/index.js
+web: node dist/index.js

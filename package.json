@@ -6,13 +6,16 @@
   "description": "REST API Backend for Patient to CRUD notes, and treatment results",
   "repository": "https://github.com/shoedog/PatientRESTAPI",
   "main": "index.js",
+  "engines": {
+    "node": "6.9.1"
+  },
   "scripts": {
     "test": "mocha --compilers js:babel-register",
     "start": "nodemon ./src/index.js --exec babel-node",
     "build": "babel src -d dist && npm run assets",
     "server": "node dist/index.js",
     "bld:start": "npm run build && npm run server",
-    "assets": "cp src/lib/config/config.json dist/lib/"
+    "assets": "cp src/lib/config/config.json dist/lib/config"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
